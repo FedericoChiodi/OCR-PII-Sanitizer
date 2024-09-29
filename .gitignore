@@ -1,0 +1,13 @@
+# Python env
+.env
+
+# Dataset folders
+dataset/output
+dataset/test_images
+
+# Model folder and reports
+distilbert-pii-finetuned/
+archive/
+
+# Images
+*.jpg
