@@ -63,7 +63,13 @@ parser.add_argument(
 parser.add_argument(
     "--do_censor",
     "-C",
-    help="Presente: Censura PII; Assente: segnala solamente",
+    help="Presente: Censura PII; Assente: segnala PII",
+    action="store_true",
+)
+parser.add_argument(
+    "--cover_all_text",
+    "-A",
+    help="Presente: Copre tutto il testo se viene rilevato un PII; Assente: copre solo il PII rilevato",
     action="store_true",
 )
 parser.add_argument(
@@ -103,9 +109,10 @@ def process_image(image_path, output_dir):
     ocr_results = reader.readtext(image_path, detail=1)
 
     pii_detected = False
+    pii_bounding_boxes = []
 
     for result in ocr_results:
-        text, confidence = result[1], result[2]
+        bounding_box, text, confidence = result[0], result[1], result[2]
         if args.debug:
             print(f"\tTesto rilevato: {text}")
             print(f"\tConfidenza OCR: {confidence}")
@@ -125,16 +132,22 @@ def process_image(image_path, output_dir):
             # Viene rilevata PII
             if prediction == 1:
                 pii_detected = True
+                pii_bounding_boxes.append(bounding_box)
         else:
             if args.debug:
                 print(
                     f"\tAnalisi saltata (confidenza OCR < {args.ocr_confidence_threshold})"
                 )
 
-    # Se viene rilevata PII, tutto il testo nell'immagine viene coperto
+    # Se viene rilevata PII
     if pii_detected:
         if args.do_censor:
-            cover_all_text(image, ocr_results)
+            if args.cover_all_text:
+                cover_all_text(image, ocr_results)
+            else:
+                # Copre solo i testi con PII
+                for bbox in pii_bounding_boxes:
+                    cover_text(image, bbox)
         else:
             print(f"PII rilevato in: {image_path}")
 
