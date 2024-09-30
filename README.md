@@ -23,6 +23,7 @@ Questa soluzione combina EasyOCR per l'estrazione del testo dalle immagini, ed u
 | `--input_folder`             | `-I`  | Path della cartella che contiene le immagini da elaborare                                     | `dataset/images`                | `str`   |
 | `--output_folder`            | `-O`  | Path della cartella dove salvare le immagini elaborate                                        | `output_images`                 | `str`   |
 | `--do_censor`                | `-C`  | Presente: Censura PII; Assente: segnala solamente                                             | N/A                             | `bool`  |
+| `--cover_all_text`                    | `-A`  | Presente: Copre tutto il testo se viene rilevato un PII; Assente: copre solo il PII rilevato                            | N/A                             | `bool`  |
 | `--debug`                    | `-d`  | Presente: Abilita info di debug; Assente: disabilita info di debug                            | N/A                             | `bool`  |
 
 ## Installazione
