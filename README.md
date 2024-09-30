@@ -1,43 +1,60 @@
-# PII Detector for Medical Images
+# PIIDMI - PII Detector for Medical Images
 
-Questo progetto utilizza un modello DistilBERT finetunato per rilevare e coprire informazioni personali identificabili (PII) in radiografie. La soluzione combina EasyOCR per l'estrazione del testo dalle immagini e un sistema di classificazione per identificare se il testo contiene PII.
+Questo progetto utilizza un modello DistilBERT finetuned per il rilevamento e l'opzionale censura di informazioni personali (PII: Personally Identifiable Information).
 
-## Caratteristiche
+Questa soluzione combina EasyOCR per l'estrazione del testo dalle immagini, ed un sistema di classificazione binario per identificare se il testo contiene PII o meno.
 
-- Estrazione del testo da immagini mediche utilizzando EasyOCR.
-- Rilevamento di PII in base al testo estratto.
-- Censura del testo se rilevato come PII.
-- Supporto per lingue multiple (inglese e italiano).
+## Funzionalità
+
+- Estrazione del testo da immagini mediche tramite EasyOCR.
+- Rilevamento di PII analizzando il testo estratto.
+- Opzionale censura del testo, guidata dalla bounding box provvista dall'OCR.
+- Supporto multi-lingua (inglese e italiano).
 - Report dettagliato delle predizioni con metriche di classificazione.
-- Tempo di elaborazione di ogni immagine <= 1s
+- Tempo di elaborazione per un'immagine <= 1s (misurato su RTX 3060)
+
+## Argomenti disponibili
+
+| Argomento                    | Short | Descrizione                                                                                   | Default                         | Tipo    |
+| ---------------------------- | ----- | --------------------------------------------------------------------------------------------- | ------------------------------- | ------- |
+| `--model`                    | `-m`  | Path o URL del modello                                                                        | `MrAB01/PersonalInfoClassifier` | `str`   |
+| `--tokenizer`                | `-t`  | Path o URL del tokenizer                                                                      | `MrAB01/PersonalInfoClassifier` | `str`   |
+| `--ocr_confidence_threshold` | `-T`  | Threshold di confidenza dell'OCR sotto alla quale il testo non viene analizzato. Default=0.75 | `0.75`                          | `float` |
+| `--input_folder`             | `-I`  | Path della cartella che contiene le immagini da elaborare                                     | `dataset/images`                | `str`   |
+| `--output_folder`            | `-O`  | Path della cartella dove salvare le immagini elaborate                                        | `output_images`                 | `str`   |
+| `--do_censor`                | `-C`  | Presente: Censura PII; Assente: segnala solamente                                             | N/A                             | `bool`  |
+| `--debug`                    | `-d`  | Presente: Abilita info di debug; Assente: disabilita info di debug                            | N/A                             | `bool`  |
 
 ## Installazione
 
 1. Clona la repository:
 
    ```sh
-   git clone https://github.com/tuo-username/PII-Detector-Medical-Images.git
+   git clone https://github.com/FedericoChiodi/OCR-PII-Sanitizer.git
    cd PII-Detector-Medical-Images
    ```
 
-2. Crea un ambiente virtuale
+2. Crea un ambiente virtuale (consigliato) ed attivalo
+
     ```sh
-    python -m venv nome_del_venv
-     ```
-     ```sh
-    source nome_del_venv/bin/activate
-    o
-    .\nome_del_venv\Scripts\activate
+    python -m venv pii_detect
+    ./pii_detect/Scripts/activate
     ```
 
 3. Installa le dipendenze:
+
     ```sh
     pip install -r requirements.txt
     ```
 
-4. Presta attenzione ai parametri dello script
+4. Esegui
 
-5. Esegui lo script
     ```sh
-    python app.py
+    python app.py --debug
     ```
+
+## Credits
+
+- [PersonalInfoClassifier](https://huggingface.co/MrAB01/PersonalInfoClassifier)
+- [EasyOCR](https://github.com/JaidedAI/EasyOCR)
+- [DistilBERT](https://arxiv.org/pdf/1910.01108)
