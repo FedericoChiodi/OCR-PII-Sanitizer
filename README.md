@@ -52,7 +52,9 @@ Questa soluzione combina EasyOCR per l'estrazione del testo dalle immagini, ed u
     pip install -r requirements.txt
     ```
 
-6. Esegui
+6. Inserisci le immagini che vuoi analizzare nella cartella dataset/images o impostala con -I
+
+7. Esegui
 
     ```sh
     python app.py
