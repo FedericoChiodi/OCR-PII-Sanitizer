@@ -48,7 +48,9 @@ Questa soluzione combina EasyOCR per l'estrazione del testo dalle immagini, ed u
     pip install -r requirements.txt
     ```
 
-4. Esegui
+4. Installa [PyTorch](https://pytorch.org/get-started/locally/) per il tuo SO e [CUDA version](https://developer.nvidia.com/cuda-downloads)
+
+5. Esegui
 
     ```sh
     python app.py
