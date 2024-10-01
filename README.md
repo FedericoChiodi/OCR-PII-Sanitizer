@@ -20,8 +20,8 @@ Questa soluzione combina EasyOCR per l'estrazione del testo dalle immagini, ed u
 | `--model`                    | `-m`  | Path o URL del modello                                                                        | `MrAB01/PersonalInfoClassifier` | `str`   |
 | `--tokenizer`                | `-t`  | Path o URL del tokenizer                                                                      | `MrAB01/PersonalInfoClassifier` | `str`   |
 | `--ocr_confidence_threshold` | `-T`  | Threshold di confidenza dell'OCR sotto alla quale il testo non viene analizzato. | `0.65`                          | `float` |
-| `--input_folder`             | `-I`  | Path della cartella che contiene le immagini da elaborare                                     | `dataset/images`                | `str`   |
-| `--output_folder`            | `-O`  | Path della cartella dove salvare le immagini elaborate                                        | `output_images`                 | `str`   |
+| `--input_directory`             | `-I`  | Path della cartella che contiene le immagini da elaborare                                     | `dataset/images`                | `str`   |
+| `--output_directory`            | `-O`  | Path della cartella dove salvare le immagini elaborate                                        | `output_images`                 | `str`   |
 | `--do_censor`                | `-C`  | Presente: Censura PII; Assente: segnala solamente                                             | N/A                             | `bool`  |
 | `--cover_all`                | `-A`  | Presente: Censura tutto il testo; Assente: censura solo PII                                             | N/A                             | `bool`  |
 | `--log_level`                | `-ll` | Set the logging level                                                                         | WARNING                         | `str`   |
