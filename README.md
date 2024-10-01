@@ -42,15 +42,17 @@ Questa soluzione combina EasyOCR per l'estrazione del testo dalle immagini, ed u
     ./pii_detect/Scripts/activate
     ```
 
-3. Installa le dipendenze:
+3. Installa [CUDA](https://developer.nvidia.com/cuda-downloads) per il tuo SO 
+
+4. Installa [PyTorch](https://pytorch.org/get-started/locally/) per il tuo SO e CUDA version
+
+5. Installa le dipendenze:
 
     ```sh
     pip install -r requirements.txt
     ```
 
-4. Installa [PyTorch](https://pytorch.org/get-started/locally/) per il tuo SO e [CUDA version](https://developer.nvidia.com/cuda-downloads)
-
-5. Esegui
+6. Esegui
 
     ```sh
     python app.py
