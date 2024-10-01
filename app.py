@@ -161,7 +161,7 @@ def main():
         "--input_directory",
         "-I",
         help="Path della cartella che contiene le immagini da elaborare",
-        default=os.path.join("dataset", "test_images"),
+        default=os.path.join("dataset", "images"),
         type=str,
     )
     parser.add_argument(
