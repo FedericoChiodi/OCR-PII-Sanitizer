@@ -19,20 +19,20 @@ Questa soluzione combina EasyOCR per l'estrazione del testo dalle immagini, ed u
 | ---------------------------- | ----- | --------------------------------------------------------------------------------------------- | ------------------------------- | ------- |
 | `--model`                    | `-m`  | Path o URL del modello                                                                        | `MrAB01/PersonalInfoClassifier` | `str`   |
 | `--tokenizer`                | `-t`  | Path o URL del tokenizer                                                                      | `MrAB01/PersonalInfoClassifier` | `str`   |
-| `--ocr_confidence_threshold` | `-T`  | Threshold di confidenza dell'OCR sotto alla quale il testo non viene analizzato. Default=0.75 | `0.75`                          | `float` |
+| `--ocr_confidence_threshold` | `-T`  | Threshold di confidenza dell'OCR sotto alla quale il testo non viene analizzato. | `0.65`                          | `float` |
 | `--input_folder`             | `-I`  | Path della cartella che contiene le immagini da elaborare                                     | `dataset/images`                | `str`   |
 | `--output_folder`            | `-O`  | Path della cartella dove salvare le immagini elaborate                                        | `output_images`                 | `str`   |
 | `--do_censor`                | `-C`  | Presente: Censura PII; Assente: segnala solamente                                             | N/A                             | `bool`  |
-| `--cover_all_text`                    | `-A`  | Presente: Copre tutto il testo se viene rilevato un PII; Assente: copre solo il PII rilevato                            | N/A                             | `bool`  |
-| `--debug`                    | `-d`  | Presente: Abilita info di debug; Assente: disabilita info di debug                            | N/A                             | `bool`  |
+| `--cover_all`                | `-A`  | Presente: Censura tutto il testo; Assente: censura solo PII                                             | N/A                             | `bool`  |
+| `--log_level`                | `-ll` | Set the logging level                                                                         | WARNING                         | `str`   |
 
 ## Installazione
 
 1. Clona la repository:
 
    ```sh
-   git clone https://github.com/FedericoChiodi/OCR-PII-Sanitizer.git
-   cd PII-Detector-Medical-Images
+   git clone https://github.com/FedericoChiodi/PIIDMI-PII-Detector-for-Medical-Images
+   cd PIIDMI-PII-Detector-for-Medical-Images
    ```
 
 2. Crea un ambiente virtuale (consigliato) ed attivalo
@@ -51,11 +51,11 @@ Questa soluzione combina EasyOCR per l'estrazione del testo dalle immagini, ed u
 4. Esegui
 
     ```sh
-    python app.py --debug
+    python app.py
     ```
 
-## Credits
+## Crediti, Attribuzioni e Licenze
 
-- [PersonalInfoClassifier](https://huggingface.co/MrAB01/PersonalInfoClassifier)
-- [EasyOCR](https://github.com/JaidedAI/EasyOCR)
+- [PersonalInfoClassifier](https://huggingface.co/MrAB01/PersonalInfoClassifier) - [MIT License](https://choosealicense.com/licenses/mit/)
+- [EasyOCR](https://github.com/JaidedAI/EasyOCR) - [Apache 2.0 License](https://choosealicense.com/licenses/apache-2.0/)
 - [DistilBERT](https://arxiv.org/pdf/1910.01108)
